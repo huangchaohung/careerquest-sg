@@ -1,1 +1,31 @@
 course_id,title,provider,skill_id,cost,duration_hours,difficulty,source_url
+1,SQL Foundations for Data Analysis,CareerQuest Academy,2,320,24,Beginner,manual_seed
+2,"Intermediate SQL: Joins, Aggregations and Subqueries",CareerQuest Academy,2,420,30,Intermediate,manual_seed
+3,Python for Data Analytics,CareerQuest Academy,3,450,32,Beginner,manual_seed
+4,Python Data Wrangling with pandas,CareerQuest Academy,3,520,36,Intermediate,manual_seed
+5,Statistics for Business Decisions,CareerQuest Academy,5,380,28,Beginner,manual_seed
+6,Applied Statistics for Analysts,CareerQuest Academy,5,520,36,Intermediate,manual_seed
+7,Data Cleaning Essentials,CareerQuest Academy,6,300,20,Beginner,manual_seed
+8,Practical Data Quality and Cleaning Workflows,CareerQuest Academy,6,480,30,Intermediate,manual_seed
+9,Data Visualization Principles,CareerQuest Academy,7,350,24,Beginner,manual_seed
+10,Storytelling with Data,CareerQuest Academy,7,420,24,Intermediate,manual_seed
+11,Dashboard Design Basics,CareerQuest Academy,8,360,24,Beginner,manual_seed
+12,Building Interactive Business Dashboards,CareerQuest Academy,8,580,40,Intermediate,manual_seed
+13,Power BI Essentials,CareerQuest Academy,9,400,28,Beginner,manual_seed
+14,Power BI for Management Reporting,CareerQuest Academy,9,520,34,Intermediate,manual_seed
+15,Tableau Fundamentals,CareerQuest Academy,10,400,28,Beginner,manual_seed
+16,Business Requirements Gathering Workshop,CareerQuest Academy,21,300,18,Beginner,manual_seed
+17,Stakeholder Interviewing and Requirements Analysis,CareerQuest Academy,21,480,30,Intermediate,manual_seed
+18,Process Mapping for Business Improvement,CareerQuest Academy,23,320,20,Beginner,manual_seed
+19,BPMN and Workflow Documentation,CareerQuest Academy,23,480,30,Intermediate,manual_seed
+20,KPI Design and Performance Reporting,CareerQuest Academy,24,360,24,Beginner,manual_seed
+21,Advanced KPI Dashboards for Operations,CareerQuest Academy,24,540,36,Intermediate,manual_seed
+22,Business Reporting with Excel,CareerQuest Academy,25,280,20,Beginner,manual_seed
+23,Executive Presentation for Analysts,CareerQuest Academy,52,260,16,Beginner,manual_seed
+24,Clear Communication for Data-Driven Recommendations,CareerQuest Academy,51,260,16,Beginner,manual_seed
+25,Critical Thinking for Problem Solving,CareerQuest Academy,59,240,16,Beginner,manual_seed
+26,Project Management Fundamentals,CareerQuest Academy,55,420,30,Beginner,manual_seed
+27,Excel Analytics for Office Professionals,CareerQuest Academy,1,300,24,Beginner,manual_seed
+28,Automating Reports with Excel and Power Query,CareerQuest Academy,1,460,32,Intermediate,manual_seed
+29,Workflow Automation Basics,CareerQuest Academy,20,420,30,Beginner,manual_seed
+30,APIs for Analysts,CareerQuest Academy,17,500,32,Intermediate,manual_seed
