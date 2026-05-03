@@ -60,8 +60,14 @@ st.markdown(
 
 
 @st.cache_resource
+def initialize_database():
+    init_db()
+    return True
+
+
 def get_connection():
-    conn = init_db()
+    initialize_database()
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     return conn
 
