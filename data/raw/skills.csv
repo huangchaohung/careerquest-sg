@@ -1,0 +1,61 @@
+skill_id,name,category
+1,Excel,Technical / Data
+2,SQL,Technical / Data
+3,Python,Technical / Data
+4,R,Technical / Data
+5,Statistics,Technical / Data
+6,Data Cleaning,Technical / Data
+7,Data Visualization,Technical / Data
+8,Dashboarding,Technical / Data
+9,Power BI,Technical / Data
+10,Tableau,Technical / Data
+11,Machine Learning Basics,Technical / Data
+12,Predictive Modelling,Technical / Data
+13,A/B Testing,Technical / Data
+14,ETL,Technical / Data
+15,Database Design,Technical / Data
+16,Data Warehousing,Technical / Data
+17,APIs,Technical / Data
+18,Git,Technical / Data
+19,Cloud Basics,Technical / Data
+20,Workflow Automation,Technical / Data
+21,Business Requirements Gathering,Business / Analytical
+22,Stakeholder Management,Business / Analytical
+23,Process Mapping,Business / Analytical
+24,KPI Design,Business / Analytical
+25,Reporting,Business / Analytical
+26,Market Research,Business / Analytical
+27,Problem Structuring,Business / Analytical
+28,Cost-Benefit Analysis,Business / Analytical
+29,Risk Analysis,Business / Analytical
+30,Policy Analysis,Business / Analytical
+31,Recruitment Operations,HR / People Analytics
+32,Interview Coordination,HR / People Analytics
+33,HRIS,HR / People Analytics
+34,Payroll Processing,HR / People Analytics
+35,Compensation Analysis,HR / People Analytics
+36,Workforce Planning,HR / People Analytics
+37,Employee Engagement Analysis,HR / People Analytics
+38,Training Needs Analysis,HR / People Analytics
+39,Labour Market Research,HR / People Analytics
+40,Performance Management,HR / People Analytics
+41,Budget Tracking,Finance / Operations
+42,Financial Reporting,Finance / Operations
+43,Procurement,Finance / Operations
+44,Vendor Management,Finance / Operations
+45,Inventory Management,Finance / Operations
+46,Demand Forecasting,Finance / Operations
+47,Supply Chain Coordination,Finance / Operations
+48,Logistics Planning,Finance / Operations
+49,Lean Six Sigma Basics,Finance / Operations
+50,Quality Control,Finance / Operations
+51,Communication,Soft / Professional
+52,Presentation,Soft / Professional
+53,Documentation,Soft / Professional
+54,Team Coordination,Soft / Professional
+55,Project Management,Soft / Professional
+56,Time Management,Soft / Professional
+57,Customer Service,Soft / Professional
+58,Negotiation,Soft / Professional
+59,Critical Thinking,Soft / Professional
+60,Change Management,Soft / Professional

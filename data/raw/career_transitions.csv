@@ -1,0 +1,11 @@
+transition_id,from_occupation_id,to_occupation_id,transition_type,estimated_months,estimated_cost,difficulty,notes
+1,6,8,lateral-upskill,3,300,2,Admin Executive can move into project coordination by strengthening documentation and stakeholder coordination.
+2,6,7,upskill,9,1500,4,Requires business requirements process mapping and basic analytics skills.
+3,7,1,upskill,6,1200,3,Business Analyst can transition into Data Analyst by improving SQL statistics and dashboarding.
+4,8,7,upskill,6,900,3,Project coordination experience supports business analysis with added requirements gathering and process skills.
+5,16,9,upskill,6,1000,3,Operations Executive can become Operations Analyst by adding KPI reporting and process analytics.
+6,9,1,upskill,6,1200,3,Operations Analyst can move into Data Analyst by improving SQL Python and visualization.
+7,11,13,upskill,6,1000,3,HR Executive can become HR Analyst by adding HRIS workforce planning and analytics skills.
+8,12,11,lateral,3,300,2,Recruitment Coordinator can transition to broader HR Executive work through HR operations exposure.
+9,14,13,upskill,9,1300,4,Payroll Executive can move toward HR Analyst by adding HRIS compensation analysis and workforce reporting.
+10,17,18,upskill,9,1500,4,Logistics Coordinator can become Supply Chain Analyst by adding demand forecasting SQL and reporting.
