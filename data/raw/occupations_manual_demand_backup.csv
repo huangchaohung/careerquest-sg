@@ -1,0 +1,21 @@
+﻿occupation_id,name,sector,description,salary_min,salary_median,salary_max,demand_score
+1,Data Analyst,Data / Tech,Analyzes structured data to produce business insights dashboards and reports,3500,5200,7500,0.85
+2,Business Intelligence Analyst,Data / Tech,Builds dashboards reporting systems and decision-support analytics,4000,5800,8200,0.82
+3,Junior Data Scientist,Data / Tech,Applies statistical and machine learning methods to solve business problems,4200,6200,9000,0.78
+4,Data Engineer,Data / Tech,Builds pipelines databases and infrastructure for data products,4500,6500,9500,0.86
+5,Machine Learning Engineer,Data / Tech,Develops deploys and monitors machine learning systems,5500,8000,12000,0.76
+6,Administrative Executive,Business / Admin,Supports business administration documentation scheduling and coordination,2500,3300,4500,0.55
+7,Business Analyst,Business / Admin,Translates business needs into requirements process improvements and analytics solutions,3800,5500,8000,0.8
+8,Project Coordinator,Business / Admin,Coordinates project schedules stakeholders documentation and delivery tracking,3200,4500,6500,0.68
+9,Operations Analyst,Business / Admin,Analyzes operational processes performance and improvement opportunities,3800,5300,7600,0.77
+10,Product Operations Associate,Business / Admin,Supports product workflows user operations metrics and cross-functional execution,3600,5000,7200,0.7
+11,HR Executive,HR / Finance Support,Manages HR operations employee records recruitment and HR processes,3000,4200,6000,0.62
+12,Recruitment Coordinator,HR / Finance Support,Coordinates hiring processes interviews candidate communication and recruitment tracking,2800,3800,5200,0.58
+13,HR Analyst,HR / Finance Support,Analyzes workforce HR and employee data to support people decisions,3800,5200,7400,0.73
+14,Payroll Executive,HR / Finance Support,Handles payroll processing statutory contributions and payroll records,3000,4200,5800,0.56
+15,Finance Analyst,HR / Finance Support,Analyzes financial data budgets forecasts and business performance,4000,5700,8500,0.76
+16,Operations Executive,Operations / Logistics,Supports day-to-day operational workflows coordination and service delivery,2800,3900,5500,0.63
+17,Logistics Coordinator,Operations / Logistics,Coordinates shipment inventory scheduling and logistics documentation,2800,3800,5200,0.6
+18,Supply Chain Analyst,Operations / Logistics,Analyzes supply chain data demand inventory and logistics performance,4000,5600,8000,0.74
+19,Procurement Executive,Operations / Logistics,Manages purchasing vendor coordination and procurement documentation,3200,4500,6500,0.64
+20,Process Improvement Analyst,Operations / Logistics,Uses data and process methods to improve operational efficiency and quality,4000,5600,8200,0.75

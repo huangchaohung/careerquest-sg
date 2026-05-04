@@ -1,0 +1,21 @@
+﻿occupation_id,name,mom_demand_score,role_course_signal,refined_demand_score,total_course_count,mapped_skill_count
+1,Data Analyst,0.672,0.576,0.643,3711,13
+7,Business Analyst,0.647,0.56,0.621,3741,10
+18,Supply Chain Analyst,0.67,0.493,0.617,1322,8
+13,HR Analyst,0.666,0.478,0.61,1125,9
+3,Junior Data Scientist,0.499,0.709,0.562,5138,11
+5,Machine Learning Engineer,0.499,0.699,0.559,4863,11
+10,Product Operations Associate,0.499,0.656,0.546,3712,9
+4,Data Engineer,0.499,0.557,0.516,3326,10
+15,Finance Analyst,0.499,0.543,0.512,1948,9
+20,Process Improvement Analyst,0.499,0.543,0.512,1957,8
+9,Operations Analyst,0.499,0.544,0.512,1986,9
+2,Business Intelligence Analyst,0.499,0.508,0.502,3001,11
+8,Project Coordinator,0.499,0.375,0.462,2961,5
+11,HR Executive,0.499,0.246,0.423,2003,4
+19,Procurement Executive,0.105,0.395,0.192,2198,5
+6,Administrative Executive,0.158,0.22,0.177,1924,3
+17,Logistics Coordinator,0.105,0.338,0.175,2227,4
+14,Payroll Executive,0.105,0.309,0.166,2168,5
+16,Operations Executive,0.105,0.304,0.165,2071,4
+12,Recruitment Coordinator,0.105,0.193,0.132,1899,2
