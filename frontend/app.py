@@ -18,6 +18,7 @@ from strategy_modes import find_best_path_by_strategy, summarize_path
 from chance_scoring import calculate_chance_score, score_to_label
 from load_seed_data import init_db
 from graph_viz import render_interactive_career_graph
+from course_options import render_course_options_explorer
 
 st.set_page_config(page_title="CareerQuest SG", page_icon="🧭", layout="wide")
 
@@ -162,125 +163,6 @@ def get_min_qualification_for_role(role):
     }:
         return "Bachelor's Degree"
     return "Diploma"
-
-
-def add_fresh_grad_nodes_to_db(conn):
-    existing = conn.execute("SELECT name FROM occupations").fetchall()
-    existing_names = {row["name"] for row in existing}
-
-    fresh_roles = [
-        {
-            "name": "Fresh Graduate — Data Science Bachelor's",
-            "sector": "Fresh Graduate",
-            "description": "Entry profile for a fresh graduate with a bachelor's degree in data science or a related field.",
-            "salary_min": 3000, "salary_median": 3800, "salary_max": 4800, "demand_score": 0.70,
-            "skills": ["Python", "Statistics", "Data Cleaning", "Data Visualization", "SQL", "Critical Thinking", "Presentation", "Communication"],
-            "transitions": [
-                ("Data Analyst", 4, 600, 2, "Data science graduates can enter data analyst roles by strengthening applied dashboarding and portfolio evidence."),
-                ("Business Intelligence Analyst", 6, 900, 3, "Requires stronger dashboarding and business reporting exposure."),
-                ("Junior Data Scientist", 8, 1400, 4, "Requires stronger modelling portfolio and applied machine learning evidence."),
-            ],
-        },
-        {
-            "name": "Fresh Graduate — Business Bachelor's",
-            "sector": "Fresh Graduate",
-            "description": "Entry profile for a fresh graduate with a bachelor's degree in business or management.",
-            "salary_min": 2800, "salary_median": 3500, "salary_max": 4500, "demand_score": 0.65,
-            "skills": ["Excel", "Business Requirements Gathering", "Stakeholder Management", "KPI Design", "Reporting", "Communication", "Presentation", "Critical Thinking"],
-            "transitions": [
-                ("Administrative Executive", 3, 300, 1, "Business graduates can enter administrative roles with minimal additional preparation."),
-                ("Business Analyst", 7, 1000, 3, "Requires requirements analysis, process mapping, and project exposure."),
-                ("Project Coordinator", 4, 500, 2, "Business graduates can enter project coordination through documentation and stakeholder coordination."),
-            ],
-        },
-        {
-            "name": "Fresh Graduate — Engineering Bachelor's",
-            "sector": "Fresh Graduate",
-            "description": "Entry profile for a fresh graduate with an engineering degree.",
-            "salary_min": 3000, "salary_median": 3800, "salary_max": 5000, "demand_score": 0.68,
-            "skills": ["Python", "Statistics", "Process Mapping", "Quality Control", "Problem Structuring", "Critical Thinking", "Documentation"],
-            "transitions": [
-                ("Operations Executive", 4, 400, 2, "Engineering graduates can enter operations roles through process and execution work."),
-                ("Operations Analyst", 7, 900, 3, "Requires KPI, reporting, and operations analytics exposure."),
-                ("Process Improvement Analyst", 8, 1200, 3, "Engineering background supports process improvement with added business analytics."),
-            ],
-        },
-        {
-            "name": "Fresh Graduate — Data Science Master's",
-            "sector": "Fresh Graduate",
-            "description": "Entry profile for a fresh graduate with a master's degree in data science or machine learning.",
-            "salary_min": 4000, "salary_median": 5200, "salary_max": 7000, "demand_score": 0.72,
-            "skills": ["Python", "SQL", "Statistics", "Machine Learning Basics", "Predictive Modelling", "Data Cleaning", "Data Visualization", "Critical Thinking", "Presentation"],
-            "transitions": [
-                ("Data Analyst", 3, 400, 1, "Master's graduates with data skills can enter data analyst roles with portfolio alignment."),
-                ("Junior Data Scientist", 5, 800, 2, "Requires applied modelling portfolio and project evidence."),
-                ("Machine Learning Engineer", 10, 1800, 4, "Requires deployment, software engineering, and production ML skills."),
-            ],
-        },
-        {
-            "name": "Fresh Graduate — Business Analytics Master's",
-            "sector": "Fresh Graduate",
-            "description": "Entry profile for a fresh graduate with a master's degree in business analytics.",
-            "salary_min": 3800, "salary_median": 5000, "salary_max": 6800, "demand_score": 0.72,
-            "skills": ["SQL", "Python", "Statistics", "Dashboarding", "Power BI", "KPI Design", "Reporting", "Business Requirements Gathering", "Presentation"],
-            "transitions": [
-                ("Business Analyst", 4, 500, 2, "Business analytics graduates can enter business analyst roles through requirements and stakeholder exposure."),
-                ("Data Analyst", 4, 600, 2, "Requires data portfolio and practical analytics project evidence."),
-                ("Business Intelligence Analyst", 5, 700, 2, "Requires dashboard and reporting system exposure."),
-            ],
-        },
-    ]
-
-    max_occ_id = conn.execute("SELECT COALESCE(MAX(occupation_id), 0) AS max_id FROM occupations").fetchone()["max_id"]
-    next_occ_id = max_occ_id + 1
-    max_transition_id = conn.execute("SELECT COALESCE(MAX(transition_id), 0) AS max_id FROM career_transitions").fetchone()["max_id"]
-    next_transition_id = max_transition_id + 1
-
-    skill_lookup = {row["name"]: row["skill_id"] for row in conn.execute("SELECT skill_id, name FROM skills").fetchall()}
-    occupation_lookup = {row["name"]: row["occupation_id"] for row in conn.execute("SELECT occupation_id, name FROM occupations").fetchall()}
-
-    for role in fresh_roles:
-        if role["name"] not in existing_names:
-            conn.execute("""
-                INSERT INTO occupations (
-                    occupation_id, name, sector, description, salary_min,
-                    salary_median, salary_max, demand_score
-                )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-            """, (next_occ_id, role["name"], role["sector"], role["description"], role["salary_min"], role["salary_median"], role["salary_max"], role["demand_score"]))
-            fresh_occ_id = next_occ_id
-            occupation_lookup[role["name"]] = fresh_occ_id
-            next_occ_id += 1
-
-            for skill_name in role["skills"]:
-                skill_id = skill_lookup.get(skill_name)
-                if skill_id is not None:
-                    conn.execute("""
-                        INSERT OR IGNORE INTO occupation_skills (occupation_id, skill_id, importance)
-                        VALUES (?, ?, ?)
-                    """, (fresh_occ_id, skill_id, 4))
-        else:
-            fresh_occ_id = occupation_lookup[role["name"]]
-
-        for target_name, months, cost, difficulty, notes in role["transitions"]:
-            target_id = occupation_lookup.get(target_name)
-            if target_id is None:
-                continue
-            existing_edge = conn.execute("""
-                SELECT 1 FROM career_transitions
-                WHERE from_occupation_id = ? AND to_occupation_id = ?
-            """, (fresh_occ_id, target_id)).fetchone()
-            if existing_edge is None:
-                conn.execute("""
-                    INSERT INTO career_transitions (
-                        transition_id, from_occupation_id, to_occupation_id,
-                        transition_type, estimated_months, estimated_cost,
-                        difficulty, notes
-                    )
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                """, (next_transition_id, fresh_occ_id, target_id, "fresh_graduate_entry", months, cost, difficulty, notes))
-                next_transition_id += 1
-    conn.commit()
 
 
 def calculate_custom_chance_score(conn, current_occupation, target_occupation, selected_skill_names, qualification):
@@ -555,9 +437,14 @@ def render_advisor_panel(current_occupation, target_occupation, label, chance_pc
             st.markdown("**Recommended focus**")
             st.write(skill_advice)
 
+def section_header(title, subtitle=None):
+    st.divider()
+    st.markdown(f"## {title}")
+    if subtitle:
+        st.caption(subtitle)
+
 
 conn = get_connection()
-add_fresh_grad_nodes_to_db(conn)
 
 occupations_df = load_occupations(conn)
 all_skills_df = load_all_skills(conn)
@@ -630,12 +517,12 @@ with st.sidebar:
         selected_skills = get_default_skill_names(conn, current_occupation)
 
 
-st.divider()
-
 main_tab, about_tab = st.tabs(["Career Simulator", "About This Model"])
 with main_tab:
-    st.markdown("## Editable Skill Profile")
-    st.caption("Default skills are pre-selected based on your starting profile. You can remove skills you do not have and add extra skills you already possess.")
+    section_header(
+        "Profile & Skill Readiness",
+        "Review and edit your starting skill profile before the model calculates your pathway."
+    )
 
     default_skills = get_default_skill_names(conn, current_occupation)
 
@@ -681,20 +568,18 @@ with main_tab:
     render_demand_explanation(target_occupation, chance_result)
 
 
-    st.divider()
+    section_header(
+        "Target Role Analysis",
+        "Understand your skill gaps, target-role requirements, and recommended focus areas."
+    )
 
-    tab1, tab2, tab3 = st.tabs(["Target Skill Gap", "Target Course Quests", "Role Details"])
+    tab1, tab2 = st.tabs(["Target Skill Gap", "Role Details"])
 
     with tab1:
         st.markdown(f"### Missing skills for final target: {target_occupation}")
         render_skill_gap(missing_skills)
 
     with tab2:
-        st.markdown("### Recommended course quests for final target")
-        target_courses_df = get_course_recommendations_df(conn, missing_skills)
-        render_course_quests(target_courses_df, study_hours_per_week)
-
-    with tab3:
         st.markdown("### Target role skill requirements")
         display_clean_table(get_required_skills_df(conn, target_occupation))
 
@@ -708,7 +593,8 @@ with main_tab:
     else:
         skill_advice = "Your edited skill profile is close to the target role. Focus on portfolio evidence and applications."
 
-    total_hours = target_courses_df["duration_hours"].sum() if not target_courses_df.empty else 0
+    total_hours = 0
+    study_weeks = 0
     study_weeks = total_hours / study_hours_per_week if study_hours_per_week else 0
 
     qualification_text = (
@@ -731,8 +617,10 @@ with main_tab:
     )
 
 
-    st.divider()
-    st.markdown("## Career Path Strategy Comparison")
+    section_header(
+        "Career Path Strategy Comparison",
+        "Compare the fastest, cheapest, easiest, and balanced pathways."
+    )
 
     strategy_map = {
         "Fastest route": "fastest",
@@ -751,10 +639,10 @@ with main_tab:
         with cols[i % 2]:
             render_path_card(label_name, summary)
 
-    st.markdown("### Route comparison table")
-    route_comparison_table(route_summaries)
-
-    st.markdown("### Interactive career graph")
+    section_header(
+        "Career Graph & Route Course Options",
+        "Explore how different routes lead to different learning requirements."
+    )
     with st.expander("Open career graph", expanded=True):
         render_interactive_career_graph(
             conn,
@@ -783,8 +671,35 @@ with main_tab:
                     st.write(f"**Route-specific missing skills:** {len(route_missing_skills)}")
                     if route_missing_skills:
                         st.caption("These are missing skills required by roles along this route, not only the final target role.")
-                        courses_df = get_course_recommendations_df(conn, route_missing_skills)
-                        render_course_quests(courses_df, study_hours_per_week)
+
+                        st.markdown("### 🧭 Skill-Based Course Explorer")
+
+                        st.markdown("""
+                        Use the tabs below to explore **courses for each required skill** along this route.
+
+                        **How to use:**
+                        - Each tab represents a **skill you need to build**
+                        - Inside each tab, you will see **multiple course options**
+                        - Click **“Select this course”** to add it to your learning plan
+                        - Your selected courses will be accumulated into your **personalised training plan**
+
+                        💡 Tip:
+                        - Compare courses by **cost, duration, and difficulty**
+                        - You do not need to follow only one route — mix and match based on your preference
+                        """)
+
+                        st.divider()
+
+                        # route tabs (no summary)
+                        render_course_options_explorer(
+                            conn=conn,
+                            missing_skills=route_missing_skills,
+                            study_hours_per_week=study_hours_per_week,
+                            title=f"Course options for {route_name}",
+                            compact=True,
+                            show_selected_plan=False,
+                            context_key=route_name,
+                        )
                     else:
                         st.success("Your edited skill profile covers the major skill requirements along this route.")
     else:
@@ -794,82 +709,108 @@ with main_tab:
 
 with about_tab:
     st.title("About CareerQuest SG")
+    st.caption("A workforce mobility simulator for exploring career transitions, skill gaps, and training pathways.")
 
+    st.divider()
+
+    st.markdown("## What this tool does")
     st.markdown("""
-### What this tool does
+CareerQuest SG helps users think through **career transitions in a structured way**.
 
-CareerQuest SG helps you explore **career transitions in a structured way**.
-
-Instead of guessing what to do next, it:
-- estimates how feasible a career move is
-- shows possible paths to get there
-- highlights the skills you are missing
-- suggests real courses you can take
-
----
-
-### How the scoring works
-
-The “chance score” is **not a probability**, but a structured indicator combining:
-
-- **Skill match** → how close your current skills are to the target role  
-- **Target demand** → how in-demand the role is (based on MOM data)  
-- **Path feasibility** → how difficult the transition path is  
-- **Salary feasibility** → how big the jump is  
-
----
-
-### Data sources
-
-- MOM job vacancy dataset (data.gov.sg) → labour demand  
-- SkillsFuture course directory → training pathways  
-- Custom career transition graph → pathway modelling  
-
----
-
-### Limitations (important)
-
-This is a **decision-support prototype**, not a prediction model.
-
-It does NOT account for:
-- personal experience / internships
-- interview performance
-- company-specific hiring criteria
-- real-time hiring trends
-
-Course availability is used as a **proxy signal**, not actual demand.
-
----
-
-### Why this exists
-
-This project explores how data can be used to make career decisions more transparent, structured, and explainable.
+Instead of guessing what to do next, the tool helps users:
+- estimate how feasible a career move is
+- compare possible career pathways
+- identify missing skills
+- explore real SkillsFuture course options
 """)
-    
+
+    st.divider()
+
+    st.markdown("## How the scoring works")
     st.markdown("""
-## Who this tool is useful for
+The **chance score** is not a literal probability. It is a structured indicator based on four components:
+""")
 
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("""
+**Skill match**  
+How closely your current skills match the target role.
+
+**Target demand**  
+How in-demand the target role appears based on labour-market and training signals.
+""")
+
+    with col2:
+        st.markdown("""
+**Path feasibility**  
+How manageable the career transition route is.
+
+**Salary feasibility**  
+How large the salary jump is from the starting profile to the target role.
+""")
+
+    st.divider()
+
+    st.markdown("## Data sources")
+    st.markdown("""
+The current prototype combines three data layers:
+
+- **MOM job vacancy data** from data.gov.sg for labour-market demand
+- **SkillsFuture Course Directory** for real training options
+- **Custom career transition graph** for pathway modelling
+""")
+
+    st.divider()
+
+    st.markdown("## Limitations")
+    st.warning("""
+This is a decision-support prototype, not a prediction model.
+
+It does not account for personal experience, internship history, interview performance,
+company-specific hiring criteria, or real-time hiring changes.
+""")
+
+    st.markdown("""
+Course availability is used as a **proxy signal**. It suggests training supply and market interest,
+but it should not be interpreted as direct job demand.
+""")
+
+    st.divider()
+
+    st.markdown("## Who this tool is useful for")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("""
 ### 🧑‍🎓 Fresh graduates
-- “What roles can I realistically enter?”
-- “What should I learn first?”
-
----
+- What roles can I realistically enter?
+- What should I learn first?
 
 ### 🔄 Career switchers
-- “Can I move from HR → Data?”
-- “How long will it take?”
+- Can I move from HR to data?
+- How long might the transition take?
+""")
 
----
-
-### 🏛 Workforce / policy perspective
-- Identify skill gaps across roles  
-- Understand realistic transition pathways  
-- Explore training needs  
-
----
+    with col2:
+        st.markdown("""
+### 🏛 Workforce planners
+- Where are skill gaps forming?
+- Which transitions need training support?
 
 ### 🧠 Personal planning
-- Compare multiple career strategies  
-- See cost vs time trade-offs  
-- Build a structured learning plan  
+- Compare time, cost, and difficulty
+- Build a structured learning plan
+""")
+
+    st.divider()
+
+    st.markdown("## Why this exists")
+    st.markdown("""
+I built this project to explore how data can make career planning more transparent and explainable.
+
+The goal is not to tell users exactly what to do, but to give them a clearer way to compare options,
+understand trade-offs, and plan their next steps.
 """)
