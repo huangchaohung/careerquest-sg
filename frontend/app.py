@@ -563,8 +563,8 @@ occupations_df = load_occupations(conn)
 all_skills_df = load_all_skills(conn)
 all_skill_names = all_skills_df["name"].tolist()
 
-st.title("🧭 CareerQuest SG")
-st.subheader("A workforce mobility and career pathway simulator")
+st.title("🧭 CareerQuest SG — Workforce Mobility Simulator")
+st.subheader("An explainable tool for exploring career transitions, skill gaps, and workforce pathways")
 st.markdown("This prototype estimates career transition feasibility, compares pathways, and recommends skill-building quests.")
 
 with st.sidebar:
@@ -603,162 +603,273 @@ with st.sidebar:
 
     st.caption("V1 uses seeded public-sector-style sample data for demonstration.")
 
+    st.sidebar.header("Quick Demo Scenarios")
+
+    demo_choice = st.sidebar.radio(
+        "Try an example:",
+        [
+            "Custom",
+            "Admin → Data Analyst",
+            "Fresh Grad → Data Scientist",
+            "HR → Supply Chain Analyst",
+        ]
+    )
+    if demo_choice == "Admin → Data Analyst":
+        current_occupation = "Administrative Executive"
+        target_occupation = "Data Analyst"
+        selected_skills = get_default_skill_names(conn, current_occupation)
+
+    elif demo_choice == "Fresh Grad → Data Scientist":
+        current_occupation = "Fresh Graduate — Data Science Bachelor's"
+        target_occupation = "Junior Data Scientist"
+        selected_skills = get_default_skill_names(conn, current_occupation)
+
+    elif demo_choice == "HR → Supply Chain Analyst":
+        current_occupation = "HR Executive"
+        target_occupation = "Supply Chain Analyst"
+        selected_skills = get_default_skill_names(conn, current_occupation)
+
 
 st.divider()
-st.markdown("## Editable Skill Profile")
-st.caption("Default skills are pre-selected based on your starting profile. You can remove skills you do not have and add extra skills you already possess.")
 
-default_skills = get_default_skill_names(conn, current_occupation)
+main_tab, about_tab = st.tabs(["Career Simulator", "About This Model"])
+with main_tab:
+    st.markdown("## Editable Skill Profile")
+    st.caption("Default skills are pre-selected based on your starting profile. You can remove skills you do not have and add extra skills you already possess.")
 
-selected_skills = st.multiselect(
-    "Your current skills",
-    options=all_skill_names,
-    default=[skill for skill in default_skills if skill in all_skill_names],
-)
+    default_skills = get_default_skill_names(conn, current_occupation)
 
-if not selected_skills:
-    st.warning("Please select at least one current skill for a meaningful analysis.")
+    selected_skills = st.multiselect(
+        "Your current skills",
+        options=all_skill_names,
+        default=[skill for skill in default_skills if skill in all_skill_names],
+    )
 
-if current_occupation == target_occupation:
-    st.info("Current occupation and target occupation are the same. Choose a different target role.")
-    st.stop()
+    if not selected_skills:
+        st.warning("Please select at least one current skill for a meaningful analysis.")
 
-chance_result = calculate_custom_chance_score(conn, current_occupation, target_occupation, selected_skills, education)
-chance_pct = chance_result["chance_score"] * 100
-label = score_to_label(chance_result["chance_score"])
-missing_skills = get_missing_skills_from_selected(conn, selected_skills, target_occupation)
+    if current_occupation == target_occupation:
+        st.info("Current occupation and target occupation are the same. Choose a different target role.")
+        st.stop()
 
-left, right = st.columns([1, 2])
+    chance_result = calculate_custom_chance_score(conn, current_occupation, target_occupation, selected_skills, education)
+    chance_pct = chance_result["chance_score"] * 100
+    label = score_to_label(chance_result["chance_score"])
+    missing_skills = get_missing_skills_from_selected(conn, selected_skills, target_occupation)
 
-with left:
-    st.markdown("### Chance Score")
-    st.metric("Estimated transition chance", f"{chance_pct:.1f}%")
-    st.write(f"**Label:** {label}")
-    st.progress(chance_result["chance_score"])
-    requirement = chance_result["qualification_requirement"]
-    if chance_result["meets_qualification_requirement"]:
-        st.success(f"Qualification check: meets minimum requirement ({requirement}).")
+    left, right = st.columns([1, 2])
+
+    with left:
+        st.markdown("### Chance Score")
+        st.metric("Estimated transition chance", f"{chance_pct:.1f}%")
+        st.write(f"**Label:** {label}")
+        st.progress(chance_result["chance_score"])
+        requirement = chance_result["qualification_requirement"]
+        if chance_result["meets_qualification_requirement"]:
+            st.success(f"Qualification check: meets minimum requirement ({requirement}).")
+        else:
+            st.warning(
+                f"Qualification check: target role usually requires at least {requirement}. "
+                f"A requirement penalty of {chance_result['qualification_penalty'] * 100:.0f}% was applied."
+            )
+
+    with right:
+        render_score_breakdown_chart(chance_result)
+        st.caption("Qualification is treated as a requirement gate, not as a bonus for having a higher degree.")
+
+    st.divider()
+    render_demand_explanation(target_occupation, chance_result)
+
+
+    st.divider()
+
+    tab1, tab2, tab3 = st.tabs(["Target Skill Gap", "Target Course Quests", "Role Details"])
+
+    with tab1:
+        st.markdown(f"### Missing skills for final target: {target_occupation}")
+        render_skill_gap(missing_skills)
+
+    with tab2:
+        st.markdown("### Recommended course quests for final target")
+        target_courses_df = get_course_recommendations_df(conn, missing_skills)
+        render_course_quests(target_courses_df, study_hours_per_week)
+
+    with tab3:
+        st.markdown("### Target role skill requirements")
+        display_clean_table(get_required_skills_df(conn, target_occupation))
+
+    top_blockers = missing_skills[:5]
+    blocker_text = ", ".join([skill["skill"] for skill in top_blockers]) if top_blockers else "None"
+
+    if chance_result["skill_match"] < 0.4:
+        skill_advice = "Your current edited skill profile has a large skill gap. Focus on foundational target-role skills first."
+    elif chance_result["skill_match"] < 0.7:
+        skill_advice = "You already have some transferable skills. Focus on closing the highest-importance gaps."
     else:
-        st.warning(
-            f"Qualification check: target role usually requires at least {requirement}. "
-            f"A requirement penalty of {chance_result['qualification_penalty'] * 100:.0f}% was applied."
-        )
+        skill_advice = "Your edited skill profile is close to the target role. Focus on portfolio evidence and applications."
 
-with right:
-    render_score_breakdown_chart(chance_result)
-    st.caption("Qualification is treated as a requirement gate, not as a bonus for having a higher degree.")
+    total_hours = target_courses_df["duration_hours"].sum() if not target_courses_df.empty else 0
+    study_weeks = total_hours / study_hours_per_week if study_hours_per_week else 0
 
-st.divider()
-render_demand_explanation(target_occupation, chance_result)
+    qualification_text = (
+        f"You meet the current minimum qualification assumption for **{target_occupation}**."
+        if chance_result["meets_qualification_requirement"]
+        else f"The target role is currently assumed to require at least **{chance_result['qualification_requirement']}**, so qualification is a possible barrier."
+    )
 
-
-st.divider()
-tab1, tab2, tab3 = st.tabs(["Target Skill Gap", "Target Course Quests", "Role Details"])
-
-with tab1:
-    st.markdown(f"### Missing skills for final target: {target_occupation}")
-    render_skill_gap(missing_skills)
-
-with tab2:
-    st.markdown("### Recommended course quests for final target")
-    target_courses_df = get_course_recommendations_df(conn, missing_skills)
-    render_course_quests(target_courses_df, study_hours_per_week)
-
-with tab3:
-    st.markdown("### Target role skill requirements")
-    display_clean_table(get_required_skills_df(conn, target_occupation))
-
-
-top_blockers = missing_skills[:5]
-blocker_text = ", ".join([skill["skill"] for skill in top_blockers]) if top_blockers else "None"
-
-if chance_result["skill_match"] < 0.4:
-    skill_advice = "Your current edited skill profile has a large skill gap. Focus on foundational target-role skills first."
-elif chance_result["skill_match"] < 0.7:
-    skill_advice = "You already have some transferable skills. Focus on closing the highest-importance gaps."
-else:
-    skill_advice = "Your edited skill profile is close to the target role. Focus on portfolio evidence and applications."
-
-total_hours = target_courses_df["duration_hours"].sum() if not target_courses_df.empty else 0
-study_weeks = total_hours / study_hours_per_week if study_hours_per_week else 0
-
-qualification_text = (
-    f"You meet the current minimum qualification assumption for **{target_occupation}**."
-    if chance_result["meets_qualification_requirement"]
-    else f"The target role is currently assumed to require at least **{chance_result['qualification_requirement']}**, so qualification is a possible barrier."
-)
-
-st.divider()
-render_advisor_panel(
-    current_occupation=current_occupation,
-    target_occupation=target_occupation,
-    label=label,
-    chance_pct=chance_pct,
-    blocker_text=blocker_text,
-    study_hours_per_week=study_hours_per_week,
-    study_weeks=study_weeks,
-    qualification_text=qualification_text,
-    skill_advice=skill_advice,
-)
-
-
-st.divider()
-st.markdown("## Career Path Strategy Comparison")
-
-strategy_map = {
-    "Fastest route": "fastest",
-    "Cheapest route": "cheapest",
-    "Easiest route": "easiest",
-    "Balanced route": "balanced",
-}
-
-route_summaries = {
-    label_name: get_strategy_summary(conn, current_occupation, target_occupation, strategy_key)
-    for label_name, strategy_key in strategy_map.items()
-}
-
-cols = st.columns(2)
-for i, (label_name, summary) in enumerate(route_summaries.items()):
-    with cols[i % 2]:
-        render_path_card(label_name, summary)
-
-st.markdown("### Route comparison table")
-route_comparison_table(route_summaries)
-
-st.markdown("### Interactive career graph")
-with st.expander("Open career graph", expanded=True):
-    render_interactive_career_graph(
-        conn,
+    st.divider()
+    render_advisor_panel(
         current_occupation=current_occupation,
         target_occupation=target_occupation,
-        route_summaries=route_summaries,)
+        label=label,
+        chance_pct=chance_pct,
+        blocker_text=blocker_text,
+        study_hours_per_week=study_hours_per_week,
+        study_weeks=study_weeks,
+        qualification_text=qualification_text,
+        skill_advice=skill_advice,
+    )
 
-st.markdown("### Route-specific course quest comparison")
-selected_routes = st.multiselect(
-    "Select routes to compare",
-    options=list(route_summaries.keys()),
-    default=["Fastest route", "Easiest route"],
-)
 
-if selected_routes:
-    route_tabs = st.tabs(selected_routes)
-    for tab, route_name in zip(route_tabs, selected_routes):
-        with tab:
-            summary = route_summaries.get(route_name)
-            if summary is None:
-                st.info("No route found.")
-            else:
-                st.markdown(f"#### {route_name}")
-                st.write(f"**Path:** {' → '.join(summary['path_names'])}")
-                route_missing_skills = get_route_skill_gap(conn, selected_skills, summary)
-                st.write(f"**Route-specific missing skills:** {len(route_missing_skills)}")
-                if route_missing_skills:
-                    st.caption("These are missing skills required by roles along this route, not only the final target role.")
-                    courses_df = get_course_recommendations_df(conn, route_missing_skills)
-                    render_course_quests(courses_df, study_hours_per_week)
+    st.divider()
+    st.markdown("## Career Path Strategy Comparison")
+
+    strategy_map = {
+        "Fastest route": "fastest",
+        "Cheapest route": "cheapest",
+        "Easiest route": "easiest",
+        "Balanced route": "balanced",
+    }
+
+    route_summaries = {
+        label_name: get_strategy_summary(conn, current_occupation, target_occupation, strategy_key)
+        for label_name, strategy_key in strategy_map.items()
+    }
+
+    cols = st.columns(2)
+    for i, (label_name, summary) in enumerate(route_summaries.items()):
+        with cols[i % 2]:
+            render_path_card(label_name, summary)
+
+    st.markdown("### Route comparison table")
+    route_comparison_table(route_summaries)
+
+    st.markdown("### Interactive career graph")
+    with st.expander("Open career graph", expanded=True):
+        render_interactive_career_graph(
+            conn,
+            current_occupation=current_occupation,
+            target_occupation=target_occupation,
+            route_summaries=route_summaries,)
+
+    st.markdown("### Route-specific course quest comparison")
+    selected_routes = st.multiselect(
+        "Select routes to compare",
+        options=list(route_summaries.keys()),
+        default=["Fastest route", "Easiest route"],
+    )
+
+    if selected_routes:
+        route_tabs = st.tabs(selected_routes)
+        for tab, route_name in zip(route_tabs, selected_routes):
+            with tab:
+                summary = route_summaries.get(route_name)
+                if summary is None:
+                    st.info("No route found.")
                 else:
-                    st.success("Your edited skill profile covers the major skill requirements along this route.")
-else:
-    st.info("Select at least one route to compare course quests.")
+                    st.markdown(f"#### {route_name}")
+                    st.write(f"**Path:** {' → '.join(summary['path_names'])}")
+                    route_missing_skills = get_route_skill_gap(conn, selected_skills, summary)
+                    st.write(f"**Route-specific missing skills:** {len(route_missing_skills)}")
+                    if route_missing_skills:
+                        st.caption("These are missing skills required by roles along this route, not only the final target role.")
+                        courses_df = get_course_recommendations_df(conn, route_missing_skills)
+                        render_course_quests(courses_df, study_hours_per_week)
+                    else:
+                        st.success("Your edited skill profile covers the major skill requirements along this route.")
+    else:
+        st.info("Select at least one route to compare course quests.")
 
-st.caption("Note: This is an explainable prototype model for portfolio demonstration, not an official labour-market prediction tool.")
+    st.caption("Note: This is an explainable prototype model for portfolio demonstration, not an official labour-market prediction tool.")
+
+with about_tab:
+    st.title("About CareerQuest SG")
+
+    st.markdown("""
+### What this tool does
+
+CareerQuest SG helps you explore **career transitions in a structured way**.
+
+Instead of guessing what to do next, it:
+- estimates how feasible a career move is
+- shows possible paths to get there
+- highlights the skills you are missing
+- suggests real courses you can take
+
+---
+
+### How the scoring works
+
+The “chance score” is **not a probability**, but a structured indicator combining:
+
+- **Skill match** → how close your current skills are to the target role  
+- **Target demand** → how in-demand the role is (based on MOM data)  
+- **Path feasibility** → how difficult the transition path is  
+- **Salary feasibility** → how big the jump is  
+
+---
+
+### Data sources
+
+- MOM job vacancy dataset (data.gov.sg) → labour demand  
+- SkillsFuture course directory → training pathways  
+- Custom career transition graph → pathway modelling  
+
+---
+
+### Limitations (important)
+
+This is a **decision-support prototype**, not a prediction model.
+
+It does NOT account for:
+- personal experience / internships
+- interview performance
+- company-specific hiring criteria
+- real-time hiring trends
+
+Course availability is used as a **proxy signal**, not actual demand.
+
+---
+
+### Why this exists
+
+This project explores how data can be used to make career decisions more transparent, structured, and explainable.
+""")
+    
+    st.markdown("""
+## Who this tool is useful for
+
+### 🧑‍🎓 Fresh graduates
+- “What roles can I realistically enter?”
+- “What should I learn first?”
+
+---
+
+### 🔄 Career switchers
+- “Can I move from HR → Data?”
+- “How long will it take?”
+
+---
+
+### 🏛 Workforce / policy perspective
+- Identify skill gaps across roles  
+- Understand realistic transition pathways  
+- Explore training needs  
+
+---
+
+### 🧠 Personal planning
+- Compare multiple career strategies  
+- See cost vs time trade-offs  
+- Build a structured learning plan  
+""")
