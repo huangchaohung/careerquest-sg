@@ -658,7 +658,9 @@ with main_tab:
             conn,
             current_occupation=current_occupation,
             target_occupation=target_occupation,
-            route_summaries=route_summaries,)
+            route_summaries=route_summaries,
+            max_degree_from_path=2,
+        )
 
     section_header(
         "Build Your Own Learning Plan",

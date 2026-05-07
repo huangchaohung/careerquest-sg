@@ -336,9 +336,12 @@ def render_course_options_explorer(conn, missing_skills, study_hours_per_week, t
 
     st.divider()
 
-    st.markdown("### 🎯 Missing Skills & Course Recommendations")
+    st.markdown(
+        f"### 🎯 Missing Skills & Course Recommendations ({len(missing_skills)} skills)"
+    )
 
-    st.markdown("""
+    with st.expander("How to use this section"):
+        st.markdown("""
     The tabs below represent the **skills currently missing** from your profile for the target role.
 
     For each skill:
