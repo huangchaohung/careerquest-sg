@@ -1,34 +1,34 @@
 ﻿occupation_id,name,sector,description,salary_min,salary_median,salary_max,demand_score
-1,Data Analyst,Data / Tech,Analyzes structured data to produce business insights dashboards and reports,3500,5200,7500,0.613
-2,Business Intelligence Analyst,Data / Tech,Builds dashboards reporting systems and decision-support analytics,4000,5800,8200,0.508
-3,Junior Data Scientist,Data / Tech,Applies statistical and machine learning methods to solve business problems,4200,6200,9000,0.642
-4,Data Engineer,Data / Tech,Builds pipelines databases and infrastructure for data products,4500,6500,9500,0.539
-5,Machine Learning Engineer,Data / Tech,Develops deploys and monitors machine learning systems,5500,8000,12000,0.634
-6,Administrative Executive,Business / Admin,Supports business administration documentation scheduling and coordination,2500,3300,4500,0.199
-7,Business Analyst,Business / Admin,Translates business needs into requirements process improvements and analytics solutions,3800,5500,8000,0.593
-8,Project Coordinator,Business / Admin,Coordinates project schedules stakeholders documentation and delivery tracking,3200,4500,6500,0.419
-9,Operations Analyst,Business / Admin,Analyzes operational processes performance and improvement opportunities,3800,5300,7600,0.532
-10,Product Operations Associate,Business / Admin,Supports product workflows user operations metrics and cross-functional execution,3600,5000,7200,0.605
-11,HR Executive,HR / Finance Support,Manages HR operations employee records recruitment and HR processes,3000,4200,6000,0.334
-12,Recruitment Coordinator,HR / Finance Support,Coordinates hiring processes interviews candidate communication and recruitment tracking,2800,3800,5200,0.163
-13,HR Analyst,HR / Finance Support,Analyzes workforce HR and employee data to support people decisions,3800,5200,7400,0.546
-14,Payroll Executive,HR / Finance Support,Handles payroll processing statutory contributions and payroll records,3000,4200,5800,0.241
-15,Finance Analyst,HR / Finance Support,Analyzes financial data budgets forecasts and business performance,4000,5700,8500,0.531
-16,Operations Executive,Operations / Logistics,Supports day-to-day operational workflows coordination and service delivery,2800,3900,5500,0.237
-17,Logistics Coordinator,Operations / Logistics,Coordinates shipment inventory scheduling and logistics documentation,2800,3800,5200,0.259
-18,Supply Chain Analyst,Operations / Logistics,Analyzes supply chain data demand inventory and logistics performance,4000,5600,8000,0.558
-19,Procurement Executive,Operations / Logistics,Manages purchasing vendor coordination and procurement documentation,3200,4500,6500,0.297
-20,Process Improvement Analyst,Operations / Logistics,Uses data and process methods to improve operational efficiency and quality,4000,5600,8200,0.531
-21,Fresh Graduate — Data Science Bachelor's,Fresh Graduate,Entry profile for a fresh graduate with a bachelor's degree in data science or a related field.,3000,3800,4800,0.714
-22,Fresh Graduate — Business Bachelor's,Fresh Graduate,Entry profile for a fresh graduate with a bachelor's degree in business or management.,2800,3500,4500,0.633
-23,Fresh Graduate — Engineering Bachelor's,Fresh Graduate,Entry profile for a fresh graduate with an engineering degree.,3000,3800,5000,0.544
-24,Fresh Graduate — Data Science Master's,Fresh Graduate,Entry profile for a fresh graduate with a master's degree in data science or machine learning.,4000,5200,7000,0.726
-25,Fresh Graduate — Business Analytics Master's,Fresh Graduate,Entry profile for a fresh graduate with a master's degree in business analytics.,3800,5000,6800,0.652
-26,Policy Analyst,Public Policy / Administration,"Analyses policy issues, prepares recommendations, and supports policy development using research and stakeholder inputs.",3500,4800,6500,0.505
-27,Research Assistant,Public Policy / Administration,"Supports research, literature reviews, data collection, survey work, and analytical reporting for policy or programme teams.",2800,3600,4800,0.39
-28,Programme Executive,Public Policy / Administration,"Coordinates public programmes, tracks implementation progress, manages stakeholders, and supports reporting.",3000,4200,5600,0.498
-29,Grants Officer,Public Policy / Administration,"Assesses grant applications, monitors compliance, supports claims processing, and administers funding schemes.",3000,4100,5500,0.392
-30,Public Communications Executive,Public Policy / Administration,"Supports public messaging, stakeholder communications, campaign coordination, and communication materials.",3200,4300,5800,0.479
-31,Service Delivery Executive,Public Policy / Administration,"Improves public-facing services, manages cases, coordinates workflows, and supports service quality improvement.",3000,4100,5500,0.496
-32,Evaluation Analyst,Public Policy / Administration,"Evaluates programme outcomes, designs indicators, analyses impact data, and produces evaluation reports.",3600,5000,6800,0.491
-33,Operations Policy Analyst,Public Policy / Administration,"Connects operational data, policy analysis, and service insights to improve implementation and service delivery.",3800,5200,7000,0.494
+1,Data Analyst,Data / Tech,Analyzes structured data to produce business insights dashboards and reports,3500,5200,7500,0.621
+2,Business Intelligence Analyst,Data / Tech,Builds dashboards reporting systems and decision-support analytics,4000,5800,8200,0.529
+3,Junior Data Scientist,Data / Tech,Applies statistical and machine learning methods to solve business problems,4200,6200,9000,0.667
+4,Data Engineer,Data / Tech,Builds pipelines databases and infrastructure for data products,4500,6500,9500,0.56
+5,Machine Learning Engineer,Data / Tech,Develops deploys and monitors machine learning systems,5500,8000,12000,0.672
+6,Administrative Executive,Business / Admin,Supports business administration documentation scheduling and coordination,2500,3300,4500,0.373
+7,Business Analyst,Business / Admin,Translates business needs into requirements process improvements and analytics solutions,3800,5500,8000,0.605
+8,Project Coordinator,Business / Admin,Coordinates project schedules stakeholders documentation and delivery tracking,3200,4500,6500,0.511
+9,Operations Analyst,Business / Admin,Analyzes operational processes performance and improvement opportunities,3800,5300,7600,0.561
+10,Product Operations Associate,Business / Admin,Supports product workflows user operations metrics and cross-functional execution,3600,5000,7200,0.641
+11,HR Executive,HR / Finance Support,Manages HR operations employee records recruitment and HR processes,3000,4200,6000,0.398
+12,Recruitment Coordinator,HR / Finance Support,Coordinates hiring processes interviews candidate communication and recruitment tracking,2800,3800,5200,0.32
+13,HR Analyst,HR / Finance Support,Analyzes workforce HR and employee data to support people decisions,3800,5200,7400,0.553
+14,Payroll Executive,HR / Finance Support,Handles payroll processing statutory contributions and payroll records,3000,4200,5800,0.345
+15,Finance Analyst,HR / Finance Support,Analyzes financial data budgets forecasts and business performance,4000,5700,8500,0.564
+16,Operations Executive,Operations / Logistics,Supports day-to-day operational workflows coordination and service delivery,2800,3900,5500,0.343
+17,Logistics Coordinator,Operations / Logistics,Coordinates shipment inventory scheduling and logistics documentation,2800,3800,5200,0.372
+18,Supply Chain Analyst,Operations / Logistics,Analyzes supply chain data demand inventory and logistics performance,4000,5600,8000,0.566
+19,Procurement Executive,Operations / Logistics,Manages purchasing vendor coordination and procurement documentation,3200,4500,6500,0.366
+20,Process Improvement Analyst,Operations / Logistics,Uses data and process methods to improve operational efficiency and quality,4000,5600,8200,0.538
+21,Fresh Graduate — Data Science Bachelor's,Fresh Graduate,Entry profile for a fresh graduate with a bachelor's degree in data science or a related field.,3000,3800,4800,0.72
+22,Fresh Graduate — Business Bachelor's,Fresh Graduate,Entry profile for a fresh graduate with a bachelor's degree in business or management.,2800,3500,4500,0.658
+23,Fresh Graduate — Engineering Bachelor's,Fresh Graduate,Entry profile for a fresh graduate with an engineering degree.,3000,3800,5000,0.538
+24,Fresh Graduate — Data Science Master's,Fresh Graduate,Entry profile for a fresh graduate with a master's degree in data science or machine learning.,4000,5200,7000,0.731
+25,Fresh Graduate — Business Analytics Master's,Fresh Graduate,Entry profile for a fresh graduate with a master's degree in business analytics.,3800,5000,6800,0.634
+26,Policy Analyst,Public Policy / Administration,"Analyses policy issues, prepares recommendations, and supports policy development using research and stakeholder inputs.",3500,4800,6500,0.565
+27,Research Assistant,Public Policy / Administration,"Supports research, literature reviews, data collection, survey work, and analytical reporting for policy or programme teams.",2800,3600,4800,0.466
+28,Programme Executive,Public Policy / Administration,"Coordinates public programmes, tracks implementation progress, manages stakeholders, and supports reporting.",3000,4200,5600,0.554
+29,Grants Officer,Public Policy / Administration,"Assesses grant applications, monitors compliance, supports claims processing, and administers funding schemes.",3000,4100,5500,0.478
+30,Public Communications Executive,Public Policy / Administration,"Supports public messaging, stakeholder communications, campaign coordination, and communication materials.",3200,4300,5800,0.525
+31,Service Delivery Executive,Public Policy / Administration,"Improves public-facing services, manages cases, coordinates workflows, and supports service quality improvement.",3000,4100,5500,0.555
+32,Evaluation Analyst,Public Policy / Administration,"Evaluates programme outcomes, designs indicators, analyses impact data, and produces evaluation reports.",3600,5000,6800,0.539
+33,Operations Policy Analyst,Public Policy / Administration,"Connects operational data, policy analysis, and service insights to improve implementation and service delivery.",3800,5200,7000,0.537

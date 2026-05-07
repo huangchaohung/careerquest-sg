@@ -1,49 +1,58 @@
 ﻿mapped_skill,kept_after_filter,exported_to_app,median_cost,median_duration_hours,max_relevance_score
-Budget Tracking,46,25,595.0,20.0,4
+Budget Tracking,42,25,595.0,20.0,4
+Critical Thinking,110,25,410.0,16.0,6
 Business Requirements Gathering,32,25,960.0,35.25,3
-Cloud Basics,276,25,750.0,32.0,6
-Communication,42,25,300.0,16.0,3
-Critical Thinking,113,25,420.0,16.0,6
+Cloud Basics,251,25,750.0,36.0,6
+Communication,36,25,300.0,16.0,3
+Customer Service,532,25,287.5,16.0,1
 Database Design,32,25,700.0,30.0,6
-Data Visualization,236,25,547.2,21.0,4
-Data Cleaning,31,25,570.0,28.0,4
-Employee Engagement Analysis,27,25,480.0,16.0,3
-Financial Reporting,60,25,945.0,30.0,4
-Presentation,245,25,390.0,16.0,6
-Machine Learning Basics,528,25,600.0,15.0,7
-KPI Design,45,25,540.0,17.0,3
-Lean Six Sigma Basics,53,25,510.0,30.0,7
-Impact Assessment,277,25,600.0,19.5,1
+Data Visualization,234,25,547.2,21.0,4
+Data Cleaning,29,25,570.0,30.0,4
+KPI Design,43,25,540.0,17.0,3
 Inventory Management,47,25,438.3,19.5,3
-Training Needs Analysis,42,25,390.0,17.0,4
-Workforce Planning,60,25,509.4,21.0,6
-Supply Chain Coordination,267,25,861.0,24.0,6
-Stakeholder Consultation,66,25,600.0,25.125,1
-Service Design,344,25,480.0,16.0,1
-Statistics,237,25,600.0,18.0,7
-Predictive Modelling,394,25,600.0,21.0,6
-Policy Analysis,152,25,660.0,23.5,1
+Impact Assessment,247,25,600.0,21.0,1
+Documentation,209,25,400.0,20.0,1
+Employee Engagement Analysis,27,25,480.0,16.0,3
+Grant Administration,31,25,628.975,24.0,1
+Financial Reporting,60,25,945.0,30.0,4
+Excel,232,25,558.9,20.5,1
+Procurement,67,25,600.0,17.0,6
 Programme Evaluation,33,25,600.0,21.0,1
-Procurement,72,25,600.0,17.0,6
-Project Management,314,25,720.0,30.0,6
-Process Mapping,88,25,585.0,20.0,3
-Regulatory Understanding,1367,25,576.0,18.0,1
-Python,90,25,675.0,17.5,4
-Public Sector Operations,225,25,599.4,24.0,1
-Public Communication,396,25,629.4875,28.0,1
+Presentation,231,25,433.5,17.0,6
+Process Mapping,83,25,547.2,20.0,3
+Predictive Modelling,390,25,600.0,20.5,6
+Policy Analysis,144,25,660.0,23.5,1
+Machine Learning Basics,528,25,600.0,15.0,7
+Lean Six Sigma Basics,49,25,600.0,32.0,7
+Workforce Planning,59,25,509.4,22.0,6
+Training Needs Analysis,40,25,390.0,16.0,4
+Time Management,317,25,375.0,16.0,1
+Service Design,294,25,480.0,16.275,1
+Statistics,220,25,600.0,18.0,7
+Team Coordination,351,25,550.0,17.0,1
+Survey Design,121,25,600.0,18.0,1
+Supply Chain Coordination,249,25,870.0,24.0,6
+Public Sector Operations,211,25,599.4,24.0,1
+Python,84,25,675.0,17.5,4
+Project Management,294,25,720.0,32.0,6
+Public Communication,391,25,630.0,30.0,1
+Recruitment Operations,120,25,600.0,19.0,1
+Stakeholder Consultation,62,25,600.0,25.0,1
 Stakeholder Management,57,25,600.0,18.0,4
+Regulatory Understanding,1268,25,570.0,18.0,1
+Qualitative Research,23,23,570.0,26.0,1
 Demand Forecasting,23,23,509.4,16.0,6
-APIs,20,20,630.0,20.5,6
 ETL,19,19,570.0,14.0,4
-Compensation Analysis,18,18,700.0,24.0,3
-Dashboarding,16,16,501.1,22.0,3
+APIs,17,17,675.0,21.0,6
+Compensation Analysis,17,17,700.0,24.0,3
 Data Warehousing,16,16,1287.0,42.0,3
 SQL,15,15,700.0,24.0,9
-Vendor Management,15,15,600.0,16.0,3
-Report Writing,14,14,425.0,16.0,1
-Git,10,10,777.5,34.75,6
-Reporting,8,8,469.15,18.0,3
+Dashboarding,14,14,501.1,22.0,3
+Vendor Management,14,14,540.0,16.0,3
+Report Writing,13,13,425.0,16.0,1
+Git,8,8,1175.0,38.75,6
+Reporting,7,7,500.0,20.0,3
 Power BI,7,7,540.0,24.0,3
 Labour Market Research,5,5,1461.0,18.0,3
 Tableau,4,4,600.0,15.5,3
-HRIS,3,3,628.975,60.0,3
+HRIS,1,1,240.0,16.0,3

@@ -79,7 +79,7 @@ print(output_path)
 
 missing_df = report_df[report_df["coverage_status"] == "MISSING"]
 
-print("\\nTop missing skills:")
+print("\nTop missing skills:")
 print(
     missing_df[
         ["skill_name", "used_by_occupations", "importance_5_count"]

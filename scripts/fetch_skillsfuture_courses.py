@@ -93,6 +93,78 @@ SKILL_KEYWORDS: Dict[str, List[str]] = {
     "Communication": ["communication", "business communication"],
     "Presentation": ["presentation", "presenting", "storytelling"],
     "Critical Thinking": ["critical thinking", "problem solving"],
+    "Excel": [
+        "excel",
+        "microsoft excel",
+        "spreadsheet",
+        "advanced excel",
+        "excel dashboard",
+    ],
+
+    "Documentation": [
+        "documentation",
+        "document management",
+        "record keeping",
+        "minutes writing",
+        "business writing",
+        "technical writing",
+    ],
+
+    "Team Coordination": [
+        "team coordination",
+        "team collaboration",
+        "teamwork",
+        "team management",
+        "collaboration",
+    ],
+
+    "Recruitment Operations": [
+        "recruitment",
+        "talent acquisition",
+        "hiring",
+        "interview",
+        "onboarding",
+    ],
+
+    "Time Management": [
+        "time management",
+        "productivity",
+        "personal effectiveness",
+        "work prioritisation",
+        "work prioritization",
+    ],
+
+    "Customer Service": [
+        "customer service",
+        "service excellence",
+        "customer experience",
+        "client service",
+        "service quality",
+    ],
+
+    "Survey Design": [
+        "survey design",
+        "questionnaire",
+        "survey research",
+        "research methods",
+        "data collection",
+    ],
+
+    "Qualitative Research": [
+        "qualitative research",
+        "interview",
+        "focus group",
+        "research methods",
+        "thematic analysis",
+    ],
+
+    "Grant Administration": [
+        "grant",
+        "grants",
+        "funding administration",
+        "claims",
+        "compliance",
+    ],
 }
 
 PUBLIC_POLICY_KEYWORDS = {
