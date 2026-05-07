@@ -95,6 +95,83 @@ SKILL_KEYWORDS: Dict[str, List[str]] = {
     "Critical Thinking": ["critical thinking", "problem solving"],
 }
 
+PUBLIC_POLICY_KEYWORDS = {
+
+    "Policy Analysis": [
+        "policy",
+        "public policy",
+        "policy analysis",
+        "policy development",
+        "governance",
+        "regulation",
+        "regulatory",
+        "policy writing"
+    ],
+
+    "Programme Evaluation": [
+        "programme evaluation",
+        "program evaluation",
+        "impact evaluation",
+        "monitoring and evaluation",
+        "evaluation framework",
+        "outcome evaluation"
+    ],
+
+    "Impact Assessment": [
+        "impact assessment",
+        "social impact",
+        "outcome assessment",
+        "impact measurement",
+        "evaluation"
+    ],
+
+    "Stakeholder Consultation": [
+        "stakeholder engagement",
+        "stakeholder management",
+        "consultation",
+        "public engagement",
+        "community engagement"
+    ],
+
+    "Public Communication": [
+        "public communication",
+        "media communication",
+        "campaign communication",
+        "corporate communication",
+        "communications"
+    ],
+
+    "Service Design": [
+        "service design",
+        "customer journey",
+        "design thinking",
+        "service improvement"
+    ],
+
+    "Public Sector Operations": [
+        "public sector",
+        "government operations",
+        "service delivery",
+        "operations management"
+    ],
+
+    "Regulatory Understanding": [
+        "regulation",
+        "regulatory",
+        "compliance",
+        "governance",
+        "risk and compliance"
+    ],
+
+    "Report Writing": [
+        "report writing",
+        "business writing",
+        "professional writing",
+        "technical writing"
+    ]
+}
+
+SKILL_KEYWORDS.update(PUBLIC_POLICY_KEYWORDS)
 
 # Difficulty guess based on course title. This is only a display field.
 DIFFICULTY_RULES = [

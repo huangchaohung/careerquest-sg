@@ -1,4 +1,4 @@
-skill_id,name,category
+﻿skill_id,name,category
 1,Excel,Technical / Data
 2,SQL,Technical / Data
 3,Python,Technical / Data
@@ -59,3 +59,14 @@ skill_id,name,category
 58,Negotiation,Soft / Professional
 59,Critical Thinking,Soft / Professional
 60,Change Management,Soft / Professional
+61,Programme Evaluation,Business / Analytical
+62,Survey Design,Business / Analytical
+63,Qualitative Research,Business / Analytical
+64,Stakeholder Consultation,Business / Analytical
+65,Grant Administration,Finance / Operations
+66,Public Communication,Soft / Professional
+67,Service Design,Business / Analytical
+68,Public Sector Operations,Business / Analytical
+69,Regulatory Understanding,Business / Analytical
+70,Report Writing,Soft / Professional
+71,Impact Assessment,Business / Analytical

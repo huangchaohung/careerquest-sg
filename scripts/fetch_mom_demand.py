@@ -86,6 +86,15 @@ ROLE_TO_MOM_GROUP: Dict[str, str] = {
     "Supply Chain Analyst": "professionals, managers, executives and technicians",
     "Procurement Executive": "clerical, sales and services workers",
     "Process Improvement Analyst": "professionals, managers, executives and technicians",
+
+    "Policy Analyst": "professionals, managers, executives and technicians",
+    "Research Assistant": "professionals, managers, executives and technicians",
+    "Programme Executive": "professionals, managers, executives and technicians",
+    "Grants Officer": "professionals, managers, executives and technicians",
+    "Public Communications Executive": "professionals, managers, executives and technicians",
+    "Service Delivery Executive": "clerical, sales and services workers",
+    "Evaluation Analyst": "professionals, managers, executives and technicians",
+    "Operations Policy Analyst": "professionals, managers, executives and technicians",
 }
 
 

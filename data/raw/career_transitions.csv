@@ -59,3 +59,23 @@
 58,25,7,fresh_graduate_entry,4,500,2,Business analytics graduates can enter business analyst roles through requirements and stakeholder exposure.
 59,25,1,fresh_graduate_entry,4,600,2,Requires data portfolio and practical analytics project evidence.
 60,25,2,fresh_graduate_entry,5,700,2,Requires dashboard and reporting system exposure.
+61,6,28,adjacent_public_admin,6,700,3,"Administrative experience can move into programme coordination by building stakeholder, reporting, and project management skills."
+62,8,28,adjacent_public_admin,4,500,2,Project coordination maps naturally into programme execution and implementation tracking.
+63,28,26,analytical_upgrade,10,1200,3,"Programme experience supports policy work after strengthening policy analysis, impact assessment, and report writing."
+64,27,26,analytical_upgrade,8,900,3,Research experience can transition into policy analysis by adding stakeholder consultation and policy recommendation skills.
+65,26,32,specialisation,8,1000,3,"Policy analysts can specialise in evaluation by strengthening statistics, indicators, and programme evaluation methods."
+66,28,29,adjacent_public_admin,5,500,2,"Programme administration provides a foundation for grants administration, compliance, and documentation work."
+67,29,28,adjacent_public_admin,5,500,2,Grants officers can move into programme execution by building project management and stakeholder coordination skills.
+68,31,33,analytical_upgrade,10,1000,3,"Service delivery experience can transition into operations policy by adding analytics, KPI design, and policy framing."
+69,9,33,analytical_upgrade,8,900,3,Operations analysts can move into operations policy by adding public sector context and policy analysis skills.
+70,32,33,adjacent_public_admin,6,700,3,Evaluation analysts can move into operations policy by applying impact evidence to service and policy improvements.
+71,7,33,career_switch,12,1400,4,"Business analysts can move into operations policy by adding public sector operations, policy analysis, and stakeholder consultation."
+72,26,33,adjacent_public_admin,6,800,3,Policy analysts can move into operations policy by adding process mapping and implementation analytics.
+73,27,32,analytical_upgrade,10,1200,3,"Research assistants can move into evaluation by developing programme evaluation, statistics, and impact assessment skills."
+74,30,26,career_switch,12,1300,4,"Public communications experience can support policy roles after strengthening analysis, research, and policy writing."
+75,28,31,adjacent_public_admin,5,500,2,Programme execution experience can move into service delivery by strengthening service design and process improvement.
+76,31,28,adjacent_public_admin,5,500,2,Service delivery experience supports programme execution through operational coordination and stakeholder management.
+77,6,29,adjacent_public_admin,6,600,3,"Administrative experience can move into grants support through documentation, compliance, and budget tracking skills."
+78,22,28,fresh_graduate_entry,5,600,2,"Business graduates can enter programme roles through project coordination, stakeholder management, and reporting."
+79,22,27,fresh_graduate_entry,6,700,3,"Business graduates can enter research assistant roles by building survey, research, and analytical reporting skills."
+80,21,32,fresh_graduate_entry,8,1000,3,Data science graduates can enter evaluation roles by adding programme evaluation and public-sector impact framing.
