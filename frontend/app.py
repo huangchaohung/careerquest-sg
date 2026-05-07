@@ -18,7 +18,8 @@ from strategy_modes import find_best_path_by_strategy, summarize_path
 from chance_scoring import calculate_chance_score, score_to_label
 from load_seed_data import init_db
 from graph_viz import render_interactive_career_graph
-from course_options import render_course_options_explorer
+from course_options import render_course_options_explorer, render_plan_comparison
+
 
 st.set_page_config(page_title="CareerQuest SG", page_icon="🧭", layout="wide")
 
@@ -239,22 +240,22 @@ def render_path_card(strategy_label, summary):
     if summary is None:
         st.warning(f"No route found for {strategy_label}.")
         return
+
     path_text = " → ".join(summary["path_names"])
-    st.markdown(
-        f"""
-        <div class="path-card">
-            <span class="route-pill">{strategy_label}</span>
-            <h4>{path_text}</h4>
-            <p class="small-muted">
-                {summary["total_months"]} months ·
-                ${summary["total_cost"]:,.0f} estimated cost ·
-                avg difficulty {summary["avg_difficulty"]:.1f}/5 ·
-                hardest step {summary["max_difficulty"]}/5
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    explanation = get_strategy_explanation(strategy_label)
+
+    with st.container(border=True):
+        st.markdown(f"### {strategy_label}")
+        st.markdown(f"**{path_text}**")
+
+        st.caption(
+            f"{summary['total_months']} months · "
+            f"${summary['total_cost']:,.0f} estimated cost · "
+            f"avg difficulty {summary['avg_difficulty']:.1f}/5 · "
+            f"hardest step {summary['max_difficulty']}/5"
+        )
+
+        st.markdown(f"**Why this route:** {explanation}")
 
 
 def render_skill_gap(missing_skills):
@@ -442,6 +443,15 @@ def section_header(title, subtitle=None):
     st.markdown(f"## {title}")
     if subtitle:
         st.caption(subtitle)
+
+def get_strategy_explanation(strategy_label):
+    explanations = {
+        "Fastest route": "This route minimises estimated transition time.",
+        "Cheapest route": "This route minimises estimated transition cost.",
+        "Easiest route": "This route favours lower transition difficulty.",
+        "Balanced route": "This route balances time, cost, and difficulty.",
+    }
+    return explanations.get(strategy_label, "This route is generated from the career transition graph.")
 
 
 conn = get_connection()
@@ -640,8 +650,8 @@ with main_tab:
             render_path_card(label_name, summary)
 
     section_header(
-        "Career Graph & Route Course Options",
-        "Explore how different routes lead to different learning requirements."
+        "Career Graph",
+        "Use the graph to understand how the system-generated career pathways connect different roles."
     )
     with st.expander("Open career graph", expanded=True):
         render_interactive_career_graph(
@@ -650,60 +660,29 @@ with main_tab:
             target_occupation=target_occupation,
             route_summaries=route_summaries,)
 
-    st.markdown("### Route-specific course quest comparison")
-    selected_routes = st.multiselect(
-        "Select routes to compare",
-        options=list(route_summaries.keys()),
-        default=["Fastest route", "Easiest route"],
+    section_header(
+        "Build Your Own Learning Plan",
+        "Choose courses based on your own priorities. This custom plan is separate from the fixed system-generated strategies above."
     )
 
-    if selected_routes:
-        route_tabs = st.tabs(selected_routes)
-        for tab, route_name in zip(route_tabs, selected_routes):
-            with tab:
-                summary = route_summaries.get(route_name)
-                if summary is None:
-                    st.info("No route found.")
-                else:
-                    st.markdown(f"#### {route_name}")
-                    st.write(f"**Path:** {' → '.join(summary['path_names'])}")
-                    route_missing_skills = get_route_skill_gap(conn, selected_skills, summary)
-                    st.write(f"**Route-specific missing skills:** {len(route_missing_skills)}")
-                    if route_missing_skills:
-                        st.caption("These are missing skills required by roles along this route, not only the final target role.")
+    st.info("""
+    You are now creating a **custom learning plan**.
 
-                        st.markdown("### 🧭 Skill-Based Course Explorer")
+    The recommended strategies above are fixed benchmarks.  
+    Your selected courses below are **your own plan**, and may be cheaper, slower, faster, or more flexible than the system-generated routes.
+    """)
 
-                        st.markdown("""
-                        Use the tabs below to explore **courses for each required skill** along this route.
+    render_plan_comparison(route_summaries, study_hours_per_week)
 
-                        **How to use:**
-                        - Each tab represents a **skill you need to build**
-                        - Inside each tab, you will see **multiple course options**
-                        - Click **“Select this course”** to add it to your learning plan
-                        - Your selected courses will be accumulated into your **personalised training plan**
-
-                        💡 Tip:
-                        - Compare courses by **cost, duration, and difficulty**
-                        - You do not need to follow only one route — mix and match based on your preference
-                        """)
-
-                        st.divider()
-
-                        # route tabs (no summary)
-                        render_course_options_explorer(
-                            conn=conn,
-                            missing_skills=route_missing_skills,
-                            study_hours_per_week=study_hours_per_week,
-                            title=f"Course options for {route_name}",
-                            compact=True,
-                            show_selected_plan=False,
-                            context_key=route_name,
-                        )
-                    else:
-                        st.success("Your edited skill profile covers the major skill requirements along this route.")
-    else:
-        st.info("Select at least one route to compare course quests.")
+    render_course_options_explorer(
+        conn=conn,
+        missing_skills=missing_skills,
+        study_hours_per_week=study_hours_per_week,
+        title="Choose courses for your custom plan",
+        compact=False,
+        show_selected_plan=True,
+        context_key="global",
+    )
 
     st.caption("Note: This is an explainable prototype model for portfolio demonstration, not an official labour-market prediction tool.")
 
