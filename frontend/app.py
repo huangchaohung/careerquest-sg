@@ -243,6 +243,10 @@ def render_path_card(strategy_label, summary):
 
     path_text = " → ".join(summary["path_names"])
     explanation = get_strategy_explanation(strategy_label)
+    avg_confidence = summary.get("avg_confidence", 0.6)
+    conf_label = confidence_label(avg_confidence)
+    conf_text = confidence_explanation(avg_confidence)
+    route_reason = get_route_explanation(summary)
 
     with st.container(border=True):
         st.markdown(f"### {strategy_label}")
@@ -252,10 +256,12 @@ def render_path_card(strategy_label, summary):
             f"{summary['total_months']} months · "
             f"${summary['total_cost']:,.0f} estimated cost · "
             f"avg difficulty {summary['avg_difficulty']:.1f}/5 · "
-            f"hardest step {summary['max_difficulty']}/5"
+            f"hardest step {summary['max_difficulty']}/5 · "
+            f"route confidence {avg_confidence:.2f} ({conf_label})"
         )
 
-        st.markdown(f"**Why this route:** {explanation}")
+        st.markdown(f"**Why this route:** {route_reason}")
+        st.caption(conf_text)
 
 
 def render_skill_gap(missing_skills):
@@ -452,6 +458,52 @@ def get_strategy_explanation(strategy_label):
         "Balanced route": "This route balances time, cost, and difficulty.",
     }
     return explanations.get(strategy_label, "This route is generated from the career transition graph.")
+
+def confidence_label(value):
+    if value >= 0.75:
+        return "High confidence"
+    if value >= 0.50:
+        return "Medium confidence"
+    return "Exploratory"
+
+
+def confidence_explanation(value):
+    if value >= 0.75:
+        return "This route follows common or natural career movements in the current graph."
+    if value >= 0.50:
+        return "This route is reasonable but may require deliberate upskilling or portfolio evidence."
+    return "This route is more exploratory and may require stronger justification, experience, or additional training."
+
+
+def get_route_explanation(summary):
+    if summary is None:
+        return "No route was found."
+
+    reasons = []
+
+    if summary["max_difficulty"] <= 2:
+        reasons.append("low transition difficulty")
+    elif summary["max_difficulty"] == 3:
+        reasons.append("moderate transition difficulty")
+    else:
+        reasons.append("one or more difficult transition steps")
+
+    if summary.get("avg_confidence", 0.6) >= 0.75:
+        reasons.append("high transition confidence")
+    elif summary.get("avg_confidence", 0.6) >= 0.50:
+        reasons.append("medium transition confidence")
+    else:
+        reasons.append("exploratory transition confidence")
+
+    if summary["total_months"] <= 6:
+        reasons.append("short preparation time")
+    elif summary["total_months"] <= 12:
+        reasons.append("manageable preparation time")
+    else:
+        reasons.append("longer preparation time")
+
+    return "This route is recommended because it has " + ", ".join(reasons) + "."
+
 
 
 conn = get_connection()

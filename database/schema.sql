@@ -34,12 +34,15 @@ CREATE TABLE occupation_skills (
 );
 
 CREATE TABLE career_transitions (
-    transition_id SERIAL PRIMARY KEY,
-    from_occupation_id INT REFERENCES occupations(occupation_id),
-    to_occupation_id INT REFERENCES occupations(occupation_id),
-    transition_type VARCHAR(50),
-    estimated_months INT,
-    estimated_cost FLOAT,
-    difficulty INT,
-    notes TEXT
+    transition_id INTEGER PRIMARY KEY,
+    from_occupation_id INTEGER,
+    to_occupation_id INTEGER,
+    transition_type TEXT,
+    estimated_months INTEGER,
+    estimated_cost REAL,
+    difficulty INTEGER,
+    notes TEXT,
+    transition_confidence REAL,
+    FOREIGN KEY (from_occupation_id) REFERENCES occupations(occupation_id),
+    FOREIGN KEY (to_occupation_id) REFERENCES occupations(occupation_id)
 );

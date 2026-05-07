@@ -82,6 +82,7 @@ def build_strategy_graph(conn, strategy, balanced_weights=None):
             "estimated_months": row["estimated_months"],
             "estimated_cost": row["estimated_cost"],
             "difficulty": row["difficulty"],
+            "transition_confidence": row["transition_confidence"] if "transition_confidence" in row.keys() else 0.6,
             "notes": row["notes"],
         })
 
@@ -140,6 +141,7 @@ def find_easiest_path_by_max_step_difficulty(conn, start, target):
             "estimated_months": row["estimated_months"],
             "estimated_cost": row["estimated_cost"],
             "difficulty": row["difficulty"],
+            "transition_confidence": row["transition_confidence"] if "transition_confidence" in row.keys() else 0.6,
             "notes": row["notes"],
         })
 
@@ -188,6 +190,7 @@ def summarize_path(start, path):
     total_cost = sum(edge["estimated_cost"] for _, edge in path)
     avg_difficulty = sum(edge["difficulty"] for _, edge in path) / len(path)
     max_difficulty = max(edge["difficulty"] for _, edge in path)
+    avg_confidence = sum(edge.get("transition_confidence", 0.6) for _, edge in path) / len(path)
 
     return {
         "path_names": path_names,
@@ -196,6 +199,7 @@ def summarize_path(start, path):
         "avg_difficulty": avg_difficulty,
         "max_difficulty": max_difficulty,
         "steps": path,
+        "avg_confidence": avg_confidence,
     }
 
 

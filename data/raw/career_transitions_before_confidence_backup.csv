@@ -1,0 +1,81 @@
+﻿transition_id,from_occupation_id,to_occupation_id,transition_type,estimated_months,estimated_cost,difficulty,notes
+1,6,7,role_transition,9,1500,4,Requires business requirements process mapping and basic analytics skills.
+2,7,1,role_transition,6,1200,3,Business Analyst can transition into Data Analyst by improving SQL statistics and dashboarding.
+3,6,8,role_transition,6,800,2,Administrative Executive can move toward project coordination through documentation and coordination strengths.
+4,8,7,role_transition,8,1200,3,Project coordination builds stakeholder and requirements skills for business analysis.
+5,11,13,role_transition,9,1300,3,HR Executive can become HR Analyst by adding HRIS analytics and workforce planning skills.
+6,12,11,role_transition,6,600,2,Recruitment coordination can transition into general HR operations.
+7,14,13,role_transition,9,1200,3,Payroll experience can lead to HR analytics through compensation and HRIS skills.
+8,16,9,role_transition,8,1000,3,Operations Executive can become Operations Analyst through KPI reporting and process analytics.
+9,17,18,role_transition,10,1600,4,Logistics Coordinator can transition into Supply Chain Analyst through forecasting and inventory analysis.
+10,19,18,role_transition,8,1200,3,Procurement Executive can move into supply chain analytics through vendor and demand analysis.
+11,6,16,role_transition,5,700,2,Administrative experience can lead into operations coordination through process tracking and execution skills.
+12,16,9,role_transition,7,900,3,Operations execution experience can develop into analytical operations work through KPI and reporting skills.
+13,9,1,role_transition,7,1100,3,"Operations Analyst can transition into Data Analyst by strengthening SQL, statistics, and dashboarding."
+14,6,10,role_transition,7,900,3,Administrative coordination can support product operations through workflow tracking and stakeholder communication.
+15,10,7,role_transition,6,1000,3,"Product operations work builds requirements, process, and business analysis exposure."
+16,10,1,role_transition,8,1400,4,Product Operations Associate can move into Data Analyst by adding technical analytics skills.
+17,7,2,role_transition,6,1300,3,"Business Analyst can move into BI by developing dashboarding, SQL, and reporting automation."
+18,2,1,role_transition,4,700,2,BI Analyst already has strong dashboarding and reporting overlap with Data Analyst.
+19,1,2,role_transition,4,700,2,Data Analyst can move into BI by specialising in dashboarding and business reporting systems.
+20,1,3,role_transition,10,1800,4,Data Analyst can progress toward Junior Data Scientist by adding modelling and stronger statistics.
+21,3,5,role_transition,12,2500,5,"Junior Data Scientist can move toward ML Engineer by adding deployment, software, and ML engineering skills."
+22,1,4,role_transition,12,2200,5,"Data Analyst can move into Data Engineering through ETL, databases, APIs, and pipeline skills."
+23,4,5,role_transition,10,2200,4,Data Engineer can move toward ML Engineer by adding modelling and deployment workflows.
+24,15,1,role_transition,7,1000,3,Finance Analyst can transition into Data Analyst because of analytical and reporting overlap.
+25,15,7,role_transition,5,700,2,Finance Analyst can move toward Business Analyst through requirements and stakeholder skills.
+26,14,15,role_transition,8,900,3,Payroll Executive can move into Finance Analyst through reporting and compensation data experience.
+27,13,1,role_transition,8,1200,3,HR Analyst can move into Data Analyst by generalising analytics beyond HR datasets.
+28,13,7,role_transition,6,800,2,HR Analyst can move into Business Analyst through stakeholder and process analysis exposure.
+29,11,7,role_transition,10,1200,4,HR Executive can transition into Business Analyst by developing requirements and process mapping.
+30,11,6,role_transition,4,300,1,HR operations experience overlaps with administrative and coordination work.
+31,8,10,role_transition,5,600,2,Project Coordinator can move into Product Operations through workflow and delivery coordination.
+32,8,16,role_transition,4,500,2,Project coordination skills transfer into operations execution roles.
+33,16,18,role_transition,11,1500,4,"Operations Executive can move into Supply Chain Analyst by adding demand, logistics, and data analysis skills."
+34,18,1,role_transition,8,1200,3,Supply Chain Analyst can transition into Data Analyst by broadening technical analytics skills.
+35,18,9,role_transition,5,600,2,Supply Chain Analyst can move into Operations Analyst due to strong operations data overlap.
+36,19,15,role_transition,7,900,3,Procurement Executive can move toward Finance Analyst through cost analysis and budget tracking.
+37,19,16,role_transition,5,500,2,Procurement work overlaps with operations execution and vendor coordination.
+38,17,16,role_transition,4,400,2,Logistics coordination can transition into broader operations execution.
+39,17,19,role_transition,6,700,2,Logistics Coordinator can move into Procurement Executive through vendor and supply chain exposure.
+40,9,20,role_transition,6,900,3,Operations Analyst can move toward Process Improvement through workflow and performance analysis.
+41,20,7,role_transition,7,1000,3,Process Improvement Analyst can move into Business Analyst through process mapping and stakeholder analysis.
+42,20,1,role_transition,8,1300,3,Process Improvement Analyst can move into Data Analyst by strengthening technical analytics.
+43,7,15,role_transition,7,1000,3,"Business Analyst can move toward Finance Analyst if focused on cost, budget, and financial reporting."
+44,7,9,role_transition,6,800,2,Business Analyst can transition into Operations Analyst through process and KPI work.
+45,2,4,role_transition,9,1700,4,"BI Analyst can move into Data Engineering by adding ETL, data warehousing, and APIs."
+46,21,1,fresh_graduate_entry,4,600,2,Data science graduates can enter data analyst roles by strengthening applied dashboarding and portfolio evidence.
+47,21,2,fresh_graduate_entry,6,900,3,Requires stronger dashboarding and business reporting exposure.
+48,21,3,fresh_graduate_entry,8,1400,4,Requires stronger modelling portfolio and applied machine learning evidence.
+49,22,6,fresh_graduate_entry,3,300,1,Business graduates can enter administrative roles with minimal additional preparation.
+50,22,7,fresh_graduate_entry,7,1000,3,"Requires requirements analysis, process mapping, and project exposure."
+51,22,8,fresh_graduate_entry,4,500,2,Business graduates can enter project coordination through documentation and stakeholder coordination.
+52,23,16,fresh_graduate_entry,4,400,2,Engineering graduates can enter operations roles through process and execution work.
+53,23,9,fresh_graduate_entry,7,900,3,"Requires KPI, reporting, and operations analytics exposure."
+54,23,20,fresh_graduate_entry,8,1200,3,Engineering background supports process improvement with added business analytics.
+55,24,1,fresh_graduate_entry,3,400,1,Master's graduates with data skills can enter data analyst roles with portfolio alignment.
+56,24,3,fresh_graduate_entry,5,800,2,Requires applied modelling portfolio and project evidence.
+57,24,5,fresh_graduate_entry,10,1800,4,"Requires deployment, software engineering, and production ML skills."
+58,25,7,fresh_graduate_entry,4,500,2,Business analytics graduates can enter business analyst roles through requirements and stakeholder exposure.
+59,25,1,fresh_graduate_entry,4,600,2,Requires data portfolio and practical analytics project evidence.
+60,25,2,fresh_graduate_entry,5,700,2,Requires dashboard and reporting system exposure.
+61,6,28,adjacent_public_admin,6,700,3,"Administrative experience can move into programme coordination by building stakeholder, reporting, and project management skills."
+62,8,28,adjacent_public_admin,4,500,2,Project coordination maps naturally into programme execution and implementation tracking.
+63,28,26,analytical_upgrade,10,1200,3,"Programme experience supports policy work after strengthening policy analysis, impact assessment, and report writing."
+64,27,26,analytical_upgrade,8,900,3,Research experience can transition into policy analysis by adding stakeholder consultation and policy recommendation skills.
+65,26,32,specialisation,8,1000,3,"Policy analysts can specialise in evaluation by strengthening statistics, indicators, and programme evaluation methods."
+66,28,29,adjacent_public_admin,5,500,2,"Programme administration provides a foundation for grants administration, compliance, and documentation work."
+67,29,28,adjacent_public_admin,5,500,2,Grants officers can move into programme execution by building project management and stakeholder coordination skills.
+68,31,33,analytical_upgrade,10,1000,3,"Service delivery experience can transition into operations policy by adding analytics, KPI design, and policy framing."
+69,9,33,analytical_upgrade,8,900,3,Operations analysts can move into operations policy by adding public sector context and policy analysis skills.
+70,32,33,adjacent_public_admin,6,700,3,Evaluation analysts can move into operations policy by applying impact evidence to service and policy improvements.
+71,7,33,career_switch,12,1400,4,"Business analysts can move into operations policy by adding public sector operations, policy analysis, and stakeholder consultation."
+72,26,33,adjacent_public_admin,6,800,3,Policy analysts can move into operations policy by adding process mapping and implementation analytics.
+73,27,32,analytical_upgrade,10,1200,3,"Research assistants can move into evaluation by developing programme evaluation, statistics, and impact assessment skills."
+74,30,26,career_switch,12,1300,4,"Public communications experience can support policy roles after strengthening analysis, research, and policy writing."
+75,28,31,adjacent_public_admin,5,500,2,Programme execution experience can move into service delivery by strengthening service design and process improvement.
+76,31,28,adjacent_public_admin,5,500,2,Service delivery experience supports programme execution through operational coordination and stakeholder management.
+77,6,29,adjacent_public_admin,6,600,3,"Administrative experience can move into grants support through documentation, compliance, and budget tracking skills."
+78,22,28,fresh_graduate_entry,5,600,2,"Business graduates can enter programme roles through project coordination, stakeholder management, and reporting."
+79,22,27,fresh_graduate_entry,6,700,3,"Business graduates can enter research assistant roles by building survey, research, and analytical reporting skills."
+80,21,32,fresh_graduate_entry,8,1000,3,Data science graduates can enter evaluation roles by adding programme evaluation and public-sector impact framing.
