@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+
+# Streamlit / secrets
+.streamlit/secrets.toml
+
+# Local generated database
+careerquest_seed.sqlite
+*.sqlite
+*.db
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary files
+*.log
+*.tmp
+
+# Optional: keep raw external XLSX out of git if file size is large
+# data/raw_external/*.xlsx
