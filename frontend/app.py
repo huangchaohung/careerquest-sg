@@ -88,7 +88,11 @@ def load_occupations(conn):
 
 def load_all_skills(conn):
     rows = conn.execute(
-        "SELECT skill_id, name, category FROM skills ORDER BY category, name"
+        """
+        SELECT skill_id, name, category, skill_family, skill_level, transferability
+        FROM skills
+        ORDER BY skill_family, category, name
+        """
     ).fetchall()
     return pd.DataFrame([dict(row) for row in rows])
 
@@ -114,7 +118,14 @@ def get_default_skill_names(conn, occupation_name):
 
 def get_target_skill_rows(conn, target_occupation):
     rows = conn.execute("""
-        SELECT s.skill_id, s.name AS skill, s.category, os.importance
+        SELECT
+            s.skill_id,
+            s.name AS skill,
+            s.category,
+            s.skill_family,
+            s.skill_level,
+            s.transferability,
+            os.importance
         FROM occupation_skills os
         JOIN occupations o ON os.occupation_id = o.occupation_id
         JOIN skills s ON os.skill_id = s.skill_id
@@ -268,9 +279,29 @@ def render_skill_gap(missing_skills):
     if not missing_skills:
         st.success("No major missing skills found based on your edited skill profile.")
         return
+
+    grouped = {}
     for skill in missing_skills:
-        st.write(f"**{skill['skill']}** · importance {skill['importance']}/5")
-        st.progress(int(skill["importance"]) / 5)
+        family = skill.get("skill_family") or "Other"
+        grouped.setdefault(family, []).append(skill)
+
+    family_order = ["Technical", "Analytical", "Professional", "Domain", "Operations", "Management", "Other"]
+
+    for family in family_order:
+        skills = grouped.get(family, [])
+        if not skills:
+            continue
+
+        st.markdown(f"#### {family} gaps")
+
+        for skill in skills:
+            level = skill.get("skill_level", "Unspecified")
+            transferability = skill.get("transferability", "Unspecified")
+            st.write(
+                f"**{skill['skill']}** · importance {skill['importance']}/5 · "
+                f"{level} · {transferability} transferability"
+            )
+            st.progress(int(skill["importance"]) / 5)
 
 
 def render_course_quests(courses_df, study_hours_per_week):

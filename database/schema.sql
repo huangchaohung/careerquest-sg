@@ -12,7 +12,10 @@ CREATE TABLE occupations (
 CREATE TABLE skills (
     skill_id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL,
-    category VARCHAR(100)
+    category VARCHAR(100),
+    skill_family TEXT,
+    skill_level TEXT,
+    transferability TEXT
 );
 
 CREATE TABLE courses (
