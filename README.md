@@ -1,3 +1,5 @@
+https://careerquest-sg-eogw2nrbmmcbjnvd5v5wws.streamlit.app/
+
 # CareerQuest SG
 
 CareerQuest SG is a career pathway intelligence prototype that helps users explore realistic career transitions in Singapore.
