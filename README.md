@@ -1,6 +1,3 @@
-# App Link 
-https://careerquest-sg-eogw2nrbmmcbjnvd5v5wws.streamlit.app/
-
 # CareerQuest SG
 
 CareerQuest SG is a career pathway intelligence prototype that helps users explore realistic career transitions in Singapore.
@@ -19,7 +16,7 @@ It combines:
 Add your deployed Streamlit link here:
 
 ```text
-https://your-app-name.streamlit.app
+https://careerquest-sg-eogw2nrbmmcbjnvd5v5wws.streamlit.app/
 ```
 
 ## What the App Does
@@ -97,4 +94,4 @@ Built CareerQuest SG, a Streamlit-based career pathway intelligence prototype in
 
 ## Author
 
-Chao Hung Huang
+Huang Chao Hung
