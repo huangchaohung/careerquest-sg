@@ -1,30 +1,3 @@
-"""
-CareerQuest SG — Step 7: SkillsFuture Course ETL
-
-Purpose:
-    Fetch the real MySkillsFuture Course Directory dataset from data.gov.sg,
-    filter it for CareerQuest-relevant courses, map courses to skills, and
-    export a clean `courses_real.csv`.
-
-Dataset:
-    MySkillsFuture Course Directory
-    Publisher: SkillsFuture Singapore (SSG)
-    Dataset ID: d_b5802b76f409764c16dde4bf2feb19cd
-
-How to run from project root:
-    python scripts/fetch_skillsfuture_courses.py
-
-Outputs:
-    data/raw_external/myskillsfuture_course_directory.xlsx
-    data/processed/courses_real.csv
-    data/processed/courses_real_review.csv
-
-Notes:
-    - This script does NOT overwrite your existing data/raw/courses.csv.
-    - Review courses_real_review.csv first.
-    - Later, we will merge approved rows into the app database.
-"""
-
 from __future__ import annotations
 
 import re

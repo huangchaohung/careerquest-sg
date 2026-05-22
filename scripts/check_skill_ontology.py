@@ -1,15 +1,3 @@
-"""
-CareerQuest SG — Skill Ontology Validation
-
-Purpose:
-    Validates skill ontology columns in data/raw/skills.csv.
-
-Run:
-    python scripts/check_skill_ontology.py
-
-Output:
-    data/processed/skill_ontology_report.csv
-"""
 
 from pathlib import Path
 import pandas as pd

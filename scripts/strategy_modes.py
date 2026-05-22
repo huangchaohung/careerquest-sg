@@ -1,13 +1,3 @@
-"""
-Step 4: Expanded strategy engine for CareerQuest SG.
-
-New improvements:
-1. Easiest route now minimizes the maximum difficulty of any single step,
-   not the total difficulty. This is more intuitive for users.
-2. Balanced route supports configurable weights.
-3. You can print several candidate routes instead of only one.
-"""
-
 from collections import defaultdict
 import heapq
 from itertools import count

@@ -1,29 +1,3 @@
-"""
-CareerQuest SG — Step 10: Refine demand score using SkillsFuture course signals
-
-Purpose:
-    Your Step 9 MOM demand score is official but broad. Many analytical/PMET roles
-    receive the same score because MOM's occupation categories are broader than
-    CareerQuest's role list.
-
-    This script refines demand_score using:
-        refined_demand = 0.70 * MOM macro score + 0.30 * role course-supply signal
-
-Inputs:
-    data/raw/occupations.csv
-    data/raw/occupation_skills.csv
-    data/raw/skills.csv
-    data/processed/courses_real.csv
-
-Outputs:
-    data/raw/occupations.csv
-    data/raw/occupations_mom_demand_backup.csv
-    data/processed/occupation_refined_demand_report.csv
-
-How to run:
-    python scripts/refine_demand_with_course_signal.py
-"""
-
 from __future__ import annotations
 
 from pathlib import Path

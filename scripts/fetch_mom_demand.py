@@ -1,32 +1,3 @@
-"""
-CareerQuest SG — Step 9: MOM Demand Score ETL
-
-Purpose:
-    Replace manually assigned demand_score values with normalized scores derived
-    from official MOM job vacancy data on data.gov.sg.
-
-Dataset:
-    Number of Job Vacancy by Occupation - Annual
-    Publisher: Ministry of Manpower (MOM)
-    Dataset ID: d_77a848ab5508fa38c5bbf72a956b3cf5
-
-How to run from project root:
-    python scripts/fetch_mom_demand.py
-
-Inputs:
-    data/raw/occupations.csv
-
-Outputs:
-    data/raw/occupations_manual_demand_backup.csv
-    data/raw/occupations.csv
-    data/processed/mom_job_vacancy_by_occupation.csv
-    data/processed/occupation_demand_mapping_report.csv
-
-Important:
-    MOM occupation categories are broad. This script uses a transparent
-    mapping layer from CareerQuest roles to MOM occupation groups.
-"""
-
 from __future__ import annotations
 
 from pathlib import Path

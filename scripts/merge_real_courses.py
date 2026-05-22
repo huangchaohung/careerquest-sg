@@ -1,31 +1,3 @@
-"""
-CareerQuest SG — Step 8: Merge Real SkillsFuture Courses
-
-Purpose:
-    Convert `data/processed/courses_real.csv` into the exact `data/raw/courses.csv`
-    schema used by the CareerQuest app.
-
-Inputs:
-    data/raw/skills.csv
-    data/raw/courses.csv                    optional existing seed file, backed up
-    data/processed/courses_real.csv          output from Step 7 SkillsFuture ETL
-
-Outputs:
-    data/raw/courses.csv                     real-course version used by the app
-    data/raw/courses_seed_backup.csv         backup of previous seeded courses, if present
-    data/processed/courses_merge_report.csv  summary by mapped skill
-    data/processed/courses_dropped_review.csv rows dropped by filters for inspection
-
-Run from project root:
-    python scripts/merge_real_courses.py
-
-Notes:
-    - This script is conservative: it filters out low-quality/ambiguous matches.
-    - You can adjust MAX_COURSES_PER_SKILL and relevance patterns below.
-    - The app database is rebuilt from CSV whenever Streamlit starts, so replacing
-      data/raw/courses.csv is enough for the app to use real SkillsFuture courses.
-"""
-
 from __future__ import annotations
 
 import re

@@ -1,20 +1,3 @@
-"""
-CareerQuest SG — Skill Ontology Migration
-
-Purpose:
-    Adds skill ontology columns to data/raw/skills.csv if missing:
-    - skill_family
-    - skill_level
-    - transferability
-
-Run from project root:
-    python scripts/add_skill_ontology.py
-
-Output:
-    Updates data/raw/skills.csv in place
-    Creates backup data/raw/skills_before_ontology_backup.csv
-"""
-
 from pathlib import Path
 import shutil
 import pandas as pd

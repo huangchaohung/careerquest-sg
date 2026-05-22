@@ -1,13 +1,3 @@
-"""
-CareerQuest SG — Transition Confidence Validation
-
-Purpose:
-    Checks whether transition_confidence exists, is numeric, and is within 0-1.
-
-Run:
-    python scripts/check_transition_confidence.py
-"""
-
 from pathlib import Path
 import pandas as pd
 

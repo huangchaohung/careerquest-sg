@@ -1,22 +1,3 @@
-"""
-Step 5: Employability / Chance Scoring for CareerQuest SG.
-
-This module estimates the user's chance of reaching a target occupation.
-
-The score is deliberately transparent and explainable. It is not meant to be
-a perfect prediction model. For this portfolio project, the goal is to show
-decision-support logic.
-
-Core score components:
-1. Skill match score
-2. Demand score
-3. Salary progression feasibility
-4. Path difficulty score
-
-Final score:
-    chance_score = weighted combination of the above
-"""
-
 from strategy_modes import find_best_path_by_strategy, summarize_path
 
 

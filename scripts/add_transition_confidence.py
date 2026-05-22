@@ -1,24 +1,3 @@
-"""
-CareerQuest SG — Transition Confidence Migration
-
-Purpose:
-    Adds a transition_confidence column to data/raw/career_transitions.csv
-    if it does not already exist.
-
-Why:
-    This helps the app distinguish between:
-    - common/natural transitions
-    - reasonable adjacent transitions
-    - exploratory/difficult switches
-
-Run from project root:
-    python scripts/add_transition_confidence.py
-
-Output:
-    Updates data/raw/career_transitions.csv in place
-    Creates backup data/raw/career_transitions_before_confidence_backup.csv
-"""
-
 from pathlib import Path
 import shutil
 import pandas as pd
